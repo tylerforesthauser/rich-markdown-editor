@@ -96,6 +96,7 @@
     "eslint-plugin-react-hooks": "^4.0.8",
     "jest": "^26.6.3",
     "prettier": "^1.19.1",
+    "prosemirror-dev-tools": "^3.1.0",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "source-map-loader": "^0.2.4",

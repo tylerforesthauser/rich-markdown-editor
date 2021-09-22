@@ -26,6 +26,8 @@ import ExtensionManager from "./lib/ExtensionManager";
 import ComponentView from "./lib/ComponentView";
 import headingToSlug from "./lib/headingToSlug";
 
+import applyDevTools from "prosemirror-dev-tools";
+
 // nodes
 import ReactNode from "./nodes/ReactNode";
 import Doc from "./nodes/Doc";
@@ -515,7 +517,7 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
       editable: () => !this.props.readOnly,
       nodeViews: this.nodeViews,
       handleDOMEvents: this.props.handleDOMEvents,
-      dispatchTransaction: function(transaction) {
+      dispatchTransaction: function (transaction) {
         // callback is bound to have the view instance as its this binding
         const { state, transactions } = this.state.applyTransaction(
           transaction
@@ -545,6 +547,8 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
 
     // Tell third-party libraries and screen-readers that this is an input
     view.dom.setAttribute("role", "textbox");
+
+    applyDevTools(view);
 
     return view;
   }
@@ -784,7 +788,7 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
   }
 }
 
-const StyledEditor = styled("div")<{
+const StyledEditor = styled("div") <{
   rtl: boolean;
   readOnly?: boolean;
   readOnlyWriteCheckboxes?: boolean;
@@ -1146,7 +1150,7 @@ const StyledEditor = styled("div")<{
     &:hover {
       border-bottom: 1px dotted
         ${props =>
-          props.readOnly ? props.theme.placeholder : props.theme.textSecondary};
+    props.readOnly ? props.theme.placeholder : props.theme.textSecondary};
     }
   }
 
@@ -1257,9 +1261,9 @@ const StyledEditor = styled("div")<{
   ul.checkbox_list li input {
     cursor: pointer;
     pointer-events: ${props =>
-      props.readOnly && !props.readOnlyWriteCheckboxes ? "none" : "initial"};
+    props.readOnly && !props.readOnlyWriteCheckboxes ? "none" : "initial"};
     opacity: ${props =>
-      props.readOnly && !props.readOnlyWriteCheckboxes ? 0.75 : 1};
+    props.readOnly && !props.readOnlyWriteCheckboxes ? 0.75 : 1};
     margin: ${props => (props.rtl ? "0.5em 0 0 0.5em" : "0.5em 0.5em 0 0")};
     width: 14px;
     height: 14px;
@@ -1530,7 +1534,7 @@ const StyledEditor = styled("div")<{
 
     .selectedCell {
       background: ${props =>
-        props.readOnly ? "inherit" : props.theme.tableSelectedBackground};
+    props.readOnly ? "inherit" : props.theme.tableSelectedBackground};
 
       /* fixes Firefox background color painting over border:
        * https://bugzilla.mozilla.org/show_bug.cgi?id=688556 */
